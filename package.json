@@ -1,0 +1,21 @@
+{
+  "name": "Ticket-Bot",
+  "version": "1.0.0",
+  "description": "Ticket Bot for Discord",
+  "main": "index.js",
+  "author": "30jannik06 <mcyolo17@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "start": "node ./out/index.js"
+  },
+  "dependencies": {
+    "chalk": "4.1.2",
+    "discord.js": "^14.6.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.8.4",
+    "yarn": "^1.22.19"
+  }
+}
