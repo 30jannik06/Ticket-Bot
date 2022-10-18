@@ -2,13 +2,12 @@
   "name": "Ticket-Bot",
   "version": "1.0.0",
   "description": "Ticket Bot for Discord",
-  "main": "index.js",
-  "author": "30jannik06 <mcyolo17@gmail.com>",
+  "author": "30jannik06",
   "license": "MIT",
   "private": true,
   "scripts": {
     "build": "tsc",
-    "start": "node ./out/index.js"
+    "start": "node ./out/bot.js"
   },
   "dependencies": {
     "chalk": "4.1.2",
