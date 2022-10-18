@@ -130,4 +130,4 @@ dist
 .idea
 
 # Ignore Main Config
-src/util/config/Config.ts
+src/util/config/config.ts
