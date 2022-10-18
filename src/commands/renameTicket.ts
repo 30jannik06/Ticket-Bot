@@ -1,7 +1,4 @@
 import {
-    ActionRowBuilder,
-    ButtonBuilder,
-    ButtonStyle,
     ChatInputCommandInteraction,
     EmbedBuilder,
     SlashCommandBuilder
@@ -31,16 +28,16 @@ module.exports = {
                 interaction.guild.channels.fetch(choosenTicket.id).then(ch => {
                     ch.setName("" + newTicketName);
                 });
-                interaction.reply({content: "``Channel Name wurde geändert``", ephemeral: true});
+                interaction.reply({content: "``Channel name was changed!``", ephemeral: true});
             } else {
                 interaction.channel.setName("" + newTicketName);
-                interaction.reply({content: "``Channel Name wurde geändert``", ephemeral: true});
+                interaction.reply({content: "``Channel name was changed!``", ephemeral: true});
             }
         } else {
             const needNameEmbed = new EmbedBuilder()
                 .setColor("#272727")
                 .setTitle("Error")
-                .setDescription("There was no name in this command input!")
+                .setDescription("You have to enter a new name!")
             interaction.reply({embeds: [needNameEmbed], ephemeral: true})
         }
 
