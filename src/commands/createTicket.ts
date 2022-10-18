@@ -13,7 +13,8 @@ module.exports = {
         .setName('create')
         .setDescription('Create new Ticket Channel.')
         .addStringOption(option =>
-            option.setName('beschreibung')
+            option
+                .setName('beschreibung')
                 .setDescription('(optional) Falls du möchtest gib hier dein Problem an.')
         ),
     async execute(interaction: ChatInputCommandInteraction) {
