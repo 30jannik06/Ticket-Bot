@@ -7,6 +7,7 @@ import {
     SlashCommandBuilder
 } from "discord.js";
 import {evnt} from "../util/helper/consoleHelper";
+import {everybodyRoleID, ticketCategoryID, ticketCloseButtonEmoji, ticketEmbedColor} from "../util/config/config";
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -27,7 +28,7 @@ module.exports = {
             })
 
             const ticketEmbed = new EmbedBuilder()
-                .setColor("#272727")
+                .setColor(ticketEmbedColor)
                 .setTitle("Ticket: " + ticketID)
                 .setDescription("Please tell us your problem in this channel!")
                 .addFields({
@@ -47,16 +48,16 @@ module.exports = {
             const row = new ActionRowBuilder<ButtonBuilder>()
                 .addComponents(
                     new ButtonBuilder()
-                        .setCustomId('ticket-close')
+                        .setCustomId('ticketclose')
                         .setLabel('Close Ticket')
-                        .setEmoji('📕')
+                        .setEmoji(ticketCloseButtonEmoji)
                         .setStyle(ButtonStyle.Primary),
                 );
 
             createdChannel.then(ch => {
-                ch.setParent("1031879251332452392")
+                ch.setParent(ticketCategoryID)
                 ch.send({embeds: [ticketEmbed], components: [row]})
-                ch.permissionOverwrites.create("834881181686300753", {ViewChannel: false})
+                ch.permissionOverwrites.create(everybodyRoleID, {ViewChannel: false})
                 ch.permissionOverwrites.create(interaction.user.id, {
                     ViewChannel: true,
                     AttachFiles: true,
@@ -69,9 +70,13 @@ module.exports = {
 
 
                 const channelCreateEmbed = new EmbedBuilder()
-                    .setColor("#272727")
+                    .setColor(ticketEmbedColor)
                     .setTitle("Ticket Created")
                     .setDescription(`Ticket has been Created! <#${ch.id}>`)
+                    .setFooter({
+                        text: "Ticket-Bot by .jannik#6908",
+                        iconURL: interaction.guild.iconURL({size: 4096, extension: "png"})
+                    })
                 return interaction.reply({embeds: [channelCreateEmbed], ephemeral: true});
             });
         }
