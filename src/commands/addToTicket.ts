@@ -1,9 +1,9 @@
 import {
     ChatInputCommandInteraction,
-    EmbedBuilder, PermissionsBitField, roleMention,
+    EmbedBuilder, PermissionsBitField,
     SlashCommandBuilder
 } from "discord.js";
-import {evnt} from "../util/helper/consoleHelper";
+import {everybodyRoleID, ticketEmbedColor} from "../util/config/config";
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -12,46 +12,51 @@ module.exports = {
         .addUserOption(option =>
             option
                 .setName('ticket-user')
-                .setDescription("Choose the user you want to add to the Ticket."))
+                .setDescription("Choose the user you want to add to the Ticket.")
+                .setRequired(true)
+        )
         .addChannelOption(option =>
             option
                 .setName("ticket-channel")
                 .setDescription("Choose the ticket-channel you want to add a user.")
+                .setRequired(false)
         ),
-    async execute(interaction: ChatInputCommandInteraction) {
-        const newTicketUser = interaction.options.getUser("ticket-user", false)
-        const choosenTicket = interaction.options.getChannel("ticket-channel", false)
+    async execute(interaction: any) {
+        const newTicketUser = interaction.options.getUser("ticket-user")
+        const choosenTicketChannel = interaction.options.getChannel("ticket-channel")
 
         if (newTicketUser != null) {
-            if (choosenTicket != null) {
-                interaction.guild.channels.fetch(choosenTicket.id).then(ch => {
-                    ch.permissionsFor(newTicketUser, false).add(
-                        PermissionsBitField.Flags.ViewChannel,
-                        PermissionsBitField.Flags.AttachFiles,
-                        PermissionsBitField.Flags.ChangeNickname,
-                        PermissionsBitField.Flags.EmbedLinks,
-                        PermissionsBitField.Flags.SendMessages,
-                        PermissionsBitField.Flags.UseApplicationCommands)
-                });
-                interaction.reply({content: "``Channel name was changed!``", ephemeral: true});
+            if (choosenTicketChannel != null) {
+                const addTicketUserEmbed = new EmbedBuilder()
+                choosenTicketChannel.permissionOverwrites.create(everybodyRoleID, {ViewChannel: false})
+                choosenTicketChannel.permissionOverwrites.create(newTicketUser.id, {
+                    ViewChannel: true,
+                    AttachFiles: true,
+                    ChangeNickname: true,
+                    EmbedLinks: true,
+                    SendMessages: true,
+                    UseApplicationCommands: true,
+                    ManageChannels: false
+                })
             } else {
-                interaction.channel.permissionsFor(newTicketUser, false).add(
-                    PermissionsBitField.Flags.ViewChannel,
-                    PermissionsBitField.Flags.AttachFiles,
-                    PermissionsBitField.Flags.ChangeNickname,
-                    PermissionsBitField.Flags.EmbedLinks,
-                    PermissionsBitField.Flags.SendMessages,
-                    PermissionsBitField.Flags.UseApplicationCommands);
-                //interaction.reply({content: "``Channel name was changed!``", ephemeral: true});
+                interaction.channel.permissionOverwrites.create(everybodyRoleID, {ViewChannel: false})
+                interaction.channel.permissionOverwrites.create(newTicketUser.id, {
+                    ViewChannel: true,
+                    AttachFiles: true,
+                    ChangeNickname: true,
+                    EmbedLinks: true,
+                    SendMessages: true,
+                    UseApplicationCommands: true,
+                    ManageChannels: false
+                })
             }
         } else {
             const needNameEmbed = new EmbedBuilder()
-                .setColor("#272727")
+                .setColor(ticketEmbedColor)
                 .setTitle("Error")
                 .setDescription("You have to enter a new name!")
-            interaction.reply({embeds: [needNameEmbed], ephemeral: true})
+            await interaction.reply({embeds: [needNameEmbed], ephemeral: true})
         }
-
     },
 }
 ;
