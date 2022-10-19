@@ -8,13 +8,13 @@
 >- [ ] debug<br>
 >- [ ] delete<br>
 >- [ ] help<br>
->- [ ] id<br>
->- [ ] invite<br>
+>- [X] id<br>
+>- [X] invite<br>
 >- [ ] new<br>
 >- [ ] open<br>
 >- [ ] panel<br>
 >- [ ] permissionslevel<br>
->- [ ] ping<br>
+>- [X] ping<br>
 >- [ ] premium<br>
 >- [ ] remove<br>
 >- [X] rename<br>
