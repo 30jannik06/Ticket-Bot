@@ -4,6 +4,7 @@ import {
     SlashCommandBuilder
 } from "discord.js";
 import {evnt} from "../util/helper/consoleHelper";
+import {ticketEmbedColor} from "../util/config/config";
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -35,7 +36,7 @@ module.exports = {
             }
         } else {
             const needNameEmbed = new EmbedBuilder()
-                .setColor("#272727")
+                .setColor(ticketEmbedColor)
                 .setTitle("Error")
                 .setDescription("You have to enter a new name!")
             interaction.reply({embeds: [needNameEmbed], ephemeral: true})
