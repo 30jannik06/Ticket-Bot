@@ -6,7 +6,7 @@ import {error} from "../util/helper/consoleHelper";
 module.exports = {
     name: 'interactionCreate',
     async execute(interaction: any) {
-        //#region SlashCommandHandle
+        //#region SlashCommandHandler
         interaction.commands = new Collection();
         const commandsPath = path.join(__dirname, '../commands');
         const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
