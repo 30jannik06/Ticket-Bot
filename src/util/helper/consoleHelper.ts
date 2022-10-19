@@ -26,7 +26,7 @@ class ConsoleHelper {
         /**
          * Sends "Command" tagged log to Console
          */
-        console.log(chalk.bgMagenta("📘[CMD]") + " " + chalk.white(msg));
+        console.log(chalk.bgBlue("📘[CMD]") + " " + chalk.white(msg));
     }
     async evnt(msg: string) {
         /**
@@ -39,7 +39,7 @@ class ConsoleHelper {
         /**
          * Sends "DATABASE" tagged log to Console
          */
-        await console.log(chalk.bgBlue("📓[DATABASE]") + " " + chalk.white(msg));
+        await console.log(chalk.bgMagenta("📓[DATABASE]") + " " + chalk.white(msg));
     }
     async clear() {
         console.clear();
