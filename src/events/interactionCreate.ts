@@ -1,7 +1,7 @@
 import {Collection} from "discord.js"
 import path from "node:path"
 import fs from "node:fs"
-import {error} from "../util/helper/consoleHelper";
+import {err} from "../util/helper/consoleHelper";
 
 module.exports = {
     name: 'interactionCreate',
@@ -25,7 +25,7 @@ module.exports = {
         try {
             await command.execute(interaction);
         } catch (e) {
-            error("InteractionCreate Event: " + e);
+            err("InteractionCreate Event: " + e);
             await interaction.reply({content: 'There was an error while executing this command!', ephemeral: true});
         }
     },
