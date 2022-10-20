@@ -2,7 +2,7 @@
 
 >- [X] add<br>
 >- [ ] claim<br>
->- [ ] close<br>
+>- [X] close<br>
 >- [ ] closerequest<br>
 >- [ ] commands<br>
 >- [ ] debug<br>
@@ -16,7 +16,7 @@
 >- [ ] permissionslevel<br>
 >- [X] ping<br>
 >- [ ] premium<br>
->- [ ] remove<br>
+>- [X] remove<br>
 >- [X] rename<br>
 >- [ ] transcript<br>
 >- [ ] vote<br>
