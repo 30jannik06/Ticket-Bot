@@ -1,5 +1,13 @@
-import {error} from "../util/helper/consoleHelper";
-import {ActionRowBuilder, ButtonBuilder, ButtonInteraction, ButtonStyle, Embed, EmbedBuilder} from "discord.js";
+import {err} from "../util/helper/consoleHelper";
+import {
+    ActionRowBuilder,
+    ButtonBuilder,
+    ButtonInteraction,
+    ButtonStyle, createChannel,
+    Embed,
+    EmbedBuilder,
+    parseWebhookURL
+} from "discord.js";
 import {everybodyRoleID, ticketCategoryID, ticketCloseButtonEmoji, ticketEmbedColor} from "../util/config/config";
 
 module.exports = {
@@ -9,7 +17,7 @@ module.exports = {
             if (interaction.customId === "createticketbutton") {
                 function createTicketChannel() {
                     const ticketID = (Math.random() * (99999 - 11111) + 0).toFixed(0)
-                    const createdChannel = interaction.guild.channels.create({
+                    let createdChannel = interaction.guild.channels.create({
                         name: "Ticket-" + ticketID
                     })
 
@@ -40,10 +48,11 @@ module.exports = {
                                 .setStyle(ButtonStyle.Primary),
                         );
 
+
                     createdChannel.then(ch => {
-                        ch.setParent(ticketCategoryID)
+                        ch.setParent(ticketCategoryID);
                         ch.send({embeds: [ticketEmbed], components: [row]})
-                        ch.permissionOverwrites.create(everybodyRoleID, {ViewChannel: false})
+                        ch.permissionOverwrites.create(interaction.guild.roles.everyone, {ViewChannel: false});
                         ch.permissionOverwrites.create(interaction.user.id, {
                             ViewChannel: true,
                             AttachFiles: true,
@@ -52,25 +61,26 @@ module.exports = {
                             SendMessages: true,
                             UseApplicationCommands: true,
                             ManageChannels: false
-                        })
-
-
-                        const channelCreateEmbed = new EmbedBuilder()
-                            .setColor(ticketEmbedColor)
-                            .setTitle("Ticket Created")
-                            .setDescription(`Ticket has been Created! <#${ch.id}>`)
-                            .setFooter({
-                                text: "Ticket-Bot by .jannik#6908",
-                                iconURL: interaction.guild.iconURL({size: 4096, extension: "png"})
-                            })
-                        return interaction.reply({embeds: [channelCreateEmbed], ephemeral: true});
-                    });
+                        });
+                    })
                 }
+
+                const channelCreateEmbed = new EmbedBuilder()
+                    .setColor(ticketEmbedColor)
+                    .setTitle("Ticket Created")
+                    //.setDescription(`Ticket has been Created! <#${createdChannel.then(c => c.id)}>`)
+                    .setFooter({
+                        text: "Ticket-Bot by .jannik#6908",
+                        iconURL: interaction.guild.iconURL({size: 4096, extension: "png"})
+                    })
+                interaction.reply({embeds: [channelCreateEmbed], ephemeral: true});
+
                 createTicketChannel()
             }
         } catch (e) {
-            error("Ticket Close Button Event: " + e);
+            err("Ticket Close Button Event: " + e);
             await interaction.reply({content: 'There was an error while executing this command!', ephemeral: true});
         }
     },
-};
+}
+;
