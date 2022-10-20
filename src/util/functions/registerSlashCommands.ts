@@ -24,7 +24,7 @@ class SlashCommand {
             );
 
             evnt(`Successfully reloaded  application [/] commands.`);
-            
+
             commands.forEach(x =>{
                 cmd(x.name)
             })
