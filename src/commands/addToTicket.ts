@@ -20,7 +20,8 @@ module.exports = {
                 .setName("ticket-channel")
                 .setDescription("Choose the ticket-channel you want to add a user.")
                 .setRequired(false)
-        ),
+        )
+        .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator),
     async execute(interaction: any) {
         const newTicketUser = interaction.options.getUser("ticket-user")
         const choosenTicketChannel = interaction.options.getChannel("ticket-channel")
