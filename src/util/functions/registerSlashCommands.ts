@@ -24,7 +24,7 @@ class SlashCommand {
             );
 
             evnt(`Successfully reloaded  application [/] commands.`);
-            //TODO: Update the forEach Function.
+            
             commands.forEach(x =>{
                 cmd(x.name)
             })
