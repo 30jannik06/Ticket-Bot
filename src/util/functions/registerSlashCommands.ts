@@ -1,7 +1,7 @@
 import {REST, Routes} from "discord.js";
 import {clientId, guildId, token} from "../config/config";
 import fs from "node:fs";
-import {cmd, error, evnt} from "../helper/consoleHelper";
+import {cmd, err, evnt} from "../helper/consoleHelper";
 
 class SlashCommand {
    async registerSlashCommands() {
@@ -29,7 +29,7 @@ class SlashCommand {
                 cmd(x.name)
             })
         } catch (error) {
-            error(error);
+            err(error);
         }
     }
 }
