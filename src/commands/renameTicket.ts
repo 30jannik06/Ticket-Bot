@@ -1,6 +1,6 @@
 import {
     ChatInputCommandInteraction,
-    EmbedBuilder,
+    EmbedBuilder, PermissionsBitField,
     SlashCommandBuilder
 } from "discord.js";
 import {evnt} from "../util/helper/consoleHelper";
@@ -19,7 +19,8 @@ module.exports = {
             option
                 .setName("ticket-channel")
                 .setDescription("Choose the Ticket you want to rename")
-        ),
+        )
+        .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator),
     async execute(interaction: ChatInputCommandInteraction) {
         const newTicketName = interaction.options.getString("ticket-name", false)
         const choosenTicket = interaction.options.getChannel("ticket-channel", false)
