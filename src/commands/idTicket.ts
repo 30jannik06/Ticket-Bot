@@ -1,4 +1,4 @@
-import {ChatInputCommandInteraction, Embed, EmbedBuilder, SlashCommandBuilder} from "discord.js";
+import {ChatInputCommandInteraction, EmbedBuilder, SlashCommandBuilder} from "discord.js";
 import {ticketEmbedColor} from "../util/config/config";
 
 module.exports = {
