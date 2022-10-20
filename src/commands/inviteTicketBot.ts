@@ -1,4 +1,4 @@
-import {ChatInputCommandInteraction, EmbedBuilder, SlashCommandBuilder} from "discord.js";
+import {ChatInputCommandInteraction, EmbedBuilder, hyperlink, SlashCommandBuilder} from "discord.js";
 import {ticketEmbedColor} from "../util/config/config";
 
 module.exports = {
@@ -12,7 +12,7 @@ module.exports = {
             .setDescription("Use this link to invite the ticket bot!")
             .addFields({
                 name: "Link:",
-                value: "[Click here](https://discord.com/oauth2/authorize?client_id=1031877662257467403&scope=applications.commands+bot&permissions=2416045072)",
+                value: hyperlink("Invite Link Here", "https://discord.com/oauth2/authorize?client_id=1031877662257467403&scope=applications.commands+bot&permissions=2416045072"),
                 inline: false
             })
             .setFooter({
