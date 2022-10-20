@@ -6,7 +6,7 @@
 >- [ ] closerequest<br>
 >- [ ] commands<br>
 >- [ ] debug<br>
->- [ ] delete<br>
+>- [X] delete<br>
 >- [ ] help<br>
 >- [X] id<br>
 >- [X] invite<br>
