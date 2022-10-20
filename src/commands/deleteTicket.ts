@@ -11,7 +11,7 @@ import {everybodyRoleID, ticketCategoryID, ticketCloseButtonEmoji, ticketEmbedCo
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('close')
+        .setName('delete')
         .setDescription('Create new Ticket Channel.')
         .addChannelOption(option =>
             option
