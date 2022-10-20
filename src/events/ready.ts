@@ -1,4 +1,4 @@
-import {clear, clog, error} from "../util/helper/consoleHelper";
+import {clear, clog, err} from "../util/helper/consoleHelper";
 import {token, clientId, guildId} from "../util/config/config";
 import {Client, REST, Routes} from 'discord.js';
 import fs = require('node:fs');
@@ -15,7 +15,7 @@ module.exports = {
             clog(`Ready! Logged in as ${client.user?.tag}`);
             registerSlashCommands()
         } catch (e) {
-            error("Ready Event: " + e);
+            err("Ready Event: " + e);
         }
     },
 };
