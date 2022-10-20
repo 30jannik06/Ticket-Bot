@@ -10,7 +10,7 @@ class ConsoleHelper {
          */
         console.log(chalk.bgYellow("📗[BOT]") + " " + chalk.white(msg));
     }
-    async error(msg: string) {
+    async err(msg: string) {
         /**
          * Sends error Message to Console
          */
@@ -46,4 +46,4 @@ class ConsoleHelper {
     }
 }
 
-export const { clog, error, warn, cmd, evnt, clear, dbLog } = new ConsoleHelper();
+export const { clog, err, warn, cmd, evnt, clear, dbLog } = new ConsoleHelper();
